@@ -1,7 +1,17 @@
 const express = require("express"),
   bodyParser = require("body-parser"),
   routes = require("./routes"),
-  { PORT } = require("./config");
+  { PORT, mongoUrl } = require("./config");
+
+//connecting to database
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/pinova", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
+
 //instanciating our app
 const app = express();
 app.use(express.static("public"));
