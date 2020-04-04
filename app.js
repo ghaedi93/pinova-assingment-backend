@@ -1,6 +1,6 @@
 const express = require("express"),
   bodyParser = require("body-parser"),
-  userRoutes = require("./routes"),
+  routes = require("./routes"),
   { PORT } = require("./config");
 //instanciating our app
 const app = express();
