@@ -22,6 +22,7 @@ exports.registerUser = async (req, res) => {
       showEmailPhoneScreen: true,
       showTermsAndCondition: false,
       showWelcomeScreen: false,
+      balance: 100,
     }).then((createdUser) => {
       res.status(200).json(createdUser);
     });

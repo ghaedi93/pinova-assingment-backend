@@ -11,11 +11,13 @@ const UserSchema = new mongoose.Schema({
   userName: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   email: { type: String, validate: validateEmail },
-  phone: { type: String },
+  phoneNumber: { type: String },
+  countryCode: { type: String },
   acceptMarketing: { type: Boolean },
   showEmailPhoneScreen: { type: Boolean },
   showTermsAndCondition: { type: Boolean },
   showWelcomeScreen: { type: Boolean },
+  balance: { type: Number },
 });
 
 module.exports = User = mongoose.model("users", UserSchema);
