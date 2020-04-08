@@ -1,13 +1,20 @@
 const express = require("express"),
   bodyParser = require("body-parser"),
+  path = require("path"),
   cors = require("cors"),
-  routes = require("./routes"),
   { PORT, mongoUrl } = require("./config");
+const {
+  athenticateUser,
+  registerUser,
+  loginUser,
+  logoutUser,
+  updateUser,
+} = require("./controllers");
 
 //connecting to database
 const mongoose = require("mongoose");
 mongoose
-  .connect("mongodb://localhost/pinova", {
+  .connect(mongoUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -19,13 +26,26 @@ mongoose
 
 //instanciating our app
 const app = express();
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "build")));
 //parse incoming requests with bodyParser
 app.use(bodyParser.json());
 //parse incoming requests with urlencoded format
 app.use(bodyParser.urlencoded({ extended: true }));
+//changing request to fix  possible cross reference erros in react.
 app.use(cors());
-app.use("/", routes);
+
+//Routes
+
+//get login-register request and
+router.post("/authenticate", athenticateUser);
+router.post("/register", registerUser);
+router.post("/login", loginUser);
+router.put("/user", updateUser);
+//serve static build files
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on Port ${PORT}`);
 });
