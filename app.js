@@ -37,10 +37,10 @@ app.use(cors());
 //Routes
 
 //get login-register request and
-router.post("/authenticate", athenticateUser);
-router.post("/register", registerUser);
-router.post("/login", loginUser);
-router.put("/user", updateUser);
+app.post("/authenticate", athenticateUser);
+app.post("/register", registerUser);
+app.post("/login", loginUser);
+app.put("/user", updateUser);
 //serve static build files
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
