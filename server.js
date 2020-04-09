@@ -12,7 +12,7 @@ const init = async () => {
     app.listen(process.env.PORT, () => {
       console.log(`Server running on Port ${process.env.PORT}`);
     });
-  } catch (e) {
+  } catch (err) {
     console.log("Init failed", err);
   }
 };
